@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gift.occasion.db.ContactPersonDAO;
+import com.gift.occasion.db.ContributionDAO;
 import com.gift.occasion.db.EventDAO;
 import com.gift.occasion.db.GiftDAO;
 import com.gift.occasion.db.GiftDO;
@@ -26,13 +27,16 @@ public class OccasionManager {
 
 	@Autowired
 	ContactPersonDAO contactPersonDAO;
+	
+	@Autowired
+	ContributionDAO contributionDAO;
 
 	public OccasionDO getOccasionInfo(Long occasionId) {
 
 		OccasionDO occasion = occasionDAO.findById(occasionId);
 		occasion.setEvents(eventDAO.findEventsForOccasion(occasionId));
-		occasion.setContacts(contactPersonDAO
-				.findContactsForOccasion(occasionId));
+		occasion.setContacts(contactPersonDAO.findContactsForOccasion(occasionId));
+		occasion.setTotalContributions(contributionDAO.findTotalContributionForOccasion(occasionId));
 		return occasion;
 	}
 

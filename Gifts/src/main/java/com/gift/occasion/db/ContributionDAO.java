@@ -33,4 +33,15 @@ public class ContributionDAO {
 		}
 		return contributions;
 	}
+
+	public TotalContributionsVO findTotalContributionForOccasion(Long occasionId) {
+
+		TotalContributionsVO totalContributions = connectionProvider
+				.getJdbcTemplate()
+				.queryForObject(
+						"select sum(amount_pledged) AS total_amount_pledged, sum(amount_collected) AS total_amount_collected from contribution where occasion_id = ?",
+						new Object[] { occasionId },
+						new BeanPropertyRowMapper(TotalContributionsVO.class));
+		return totalContributions;
+	}
 }

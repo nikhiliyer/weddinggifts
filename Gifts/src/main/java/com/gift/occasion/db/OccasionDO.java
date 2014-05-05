@@ -15,9 +15,10 @@ public class OccasionDO {
 	private String description;
 	private String imageUrl;
 	private String secretKey;
+	private TotalContributionsVO totalContributions;
 	private List<EventDO> events;
 	private List<ContactPersonDO> contacts;
-
+	
 	public OccasionDO() {
 
 		this.events = new ArrayList<EventDO>();
@@ -86,5 +87,13 @@ public class OccasionDO {
 
 	public void setSecretKey(String secretKey) {
 		this.secretKey = secretKey;
+	}
+
+	public TotalContributionsVO getTotalContributions() {
+		return totalContributions;
+	}
+
+	public void setTotalContributions(TotalContributionsVO totalContributions) {
+		this.totalContributions = totalContributions;
 	}
 }

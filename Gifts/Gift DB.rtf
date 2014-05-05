@@ -188,4 +188,35 @@ CREATE TABLE contribution (\
 \
 insert into contribution (occasion_id, contact_person_id, name, phone_number, email, address, custom_message, payment_method, amount) values (1, 1, 'Ashok Aditya', '+91 98861 133941', 'aa@gmail.com', 'Somewhere in Bangalore', 'All the best guys', 'EFT', 1001);\
 insert into contribution (occasion_id, contact_person_id, name, phone_number, email, address, custom_message, payment_method, amount) values (1, 1, 'Tanya', '+91 98861 133941', 'tan@gmail.com', 'Somewhere in Bangalore', 'Happy married life - Tanya', 'CHECK', 2001);\
+\
+CREATE TABLE involved_person (\
+ id SERIAL NOT NULL,\
+ occasion_id bigint NOT NULL,\
+ name character varying NOT NULL,\
+ role character varying NOT NULL,\
+ phone_number character varying NOT NULL,\
+ email character varying NOT NULL,\
+ address character varying NOT NULL,\
+ created_on timestamp without time zone NOT NULL DEFAULT now(),\
+ modified_on timestamp without time zone NOT NULL DEFAULT now(),\
+ CONSTRAINT involved_person_pkey PRIMARY KEY (id),\
+ CONSTRAINT involved_person_occasion_fk FOREIGN KEY (occasion_id)\
+      REFERENCES occasion (id)\
+ ) WITH (OIDS=FALSE);\
+ \
+ ALTER TABLE involved_person\
+ OWNER TO postgres;\
+ COMMENT ON TABLE involved_person\
+ IS 'contains all involved persons for a occasion';\
+\
+ CREATE TRIGGER involved_person_modified_on\
+ BEFORE UPDATE \
+ ON involved_person\
+ FOR EACH ROW\
+ EXECUTE PROCEDURE update_modified_on();\
+ COMMIT;\
+\
+insert into involved_person (occasion_id, name, role, phone_number, email, address) values (1, 'Rahul Ram Kumar', 'GROOM', '+91 98861 133941', 'dam@gmail.com', '2640 18th Main 3rd Cross HAL 2nd Stage Bangalore 08');\
+insert into involved_person (occasion_id, name, role, phone_number, email, address) values (1, 'Sandhya', 'BRIDE', '+91 98861 133941', 'sandhya@gmail.com', '2640 18th Main 3rd Cross HAL 2nd Stage Bangalore 08');\
+\
 }

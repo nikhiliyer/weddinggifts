@@ -10,6 +10,7 @@ import com.gift.occasion.db.ContributionDAO;
 import com.gift.occasion.db.EventDAO;
 import com.gift.occasion.db.GiftDAO;
 import com.gift.occasion.db.GiftDO;
+import com.gift.occasion.db.InvolvedPersonDAO;
 import com.gift.occasion.db.OccasionDAO;
 import com.gift.occasion.db.OccasionDO;
 import com.gift.occasion.db.OccasionVO;
@@ -31,6 +32,9 @@ public class OccasionManager {
 	
 	@Autowired
 	ContributionDAO contributionDAO;
+	
+	@Autowired
+	InvolvedPersonDAO involvedPersonDAO;
 
 	public OccasionVO getOccasionInfo(Long occasionId) {
 
@@ -39,6 +43,7 @@ public class OccasionManager {
 		occasionVO.setEvents(eventDAO.findEventsForOccasion(occasionId));
 		occasionVO.setContacts(contactPersonDAO.findContactsForOccasion(occasionId));
 		occasionVO.setTotalContributions(contributionDAO.findTotalContributionForOccasion(occasionId));
+		occasionVO.setInvolvedPersons(involvedPersonDAO.findPeopleInvolvedInOccasion(occasionId));
 		return occasionVO;
 	}
 

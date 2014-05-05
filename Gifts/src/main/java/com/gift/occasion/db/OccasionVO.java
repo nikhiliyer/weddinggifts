@@ -3,8 +3,12 @@ package com.gift.occasion.db;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"secretKey"})
 public class OccasionVO extends OccasionDO {
 
+	private List<InvolvedPersonDO> involvedPersons;
 	private TotalContributionsVO totalContributions;
 	private List<EventDO> events;
 	private List<ContactPersonDO> contacts;
@@ -18,6 +22,7 @@ public class OccasionVO extends OccasionDO {
 		this.setType(occasionDO.getType());
 		this.events = new ArrayList<EventDO>();
 		this.contacts = new ArrayList<ContactPersonDO>();
+		this.involvedPersons = new ArrayList<InvolvedPersonDO>();
 	}
 
 	public List<EventDO> getEvents() {
@@ -42,5 +47,13 @@ public class OccasionVO extends OccasionDO {
 
 	public void setTotalContributions(TotalContributionsVO totalContributions) {
 		this.totalContributions = totalContributions;
+	}
+
+	public List<InvolvedPersonDO> getInvolvedPersons() {
+		return involvedPersons;
+	}
+
+	public void setInvolvedPersons(List<InvolvedPersonDO> involvedPersons) {
+		this.involvedPersons = involvedPersons;
 	}
 }

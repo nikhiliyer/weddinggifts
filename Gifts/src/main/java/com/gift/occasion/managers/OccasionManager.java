@@ -12,6 +12,7 @@ import com.gift.occasion.db.GiftDAO;
 import com.gift.occasion.db.GiftDO;
 import com.gift.occasion.db.OccasionDAO;
 import com.gift.occasion.db.OccasionDO;
+import com.gift.occasion.db.OccasionVO;
 
 @Service
 public class OccasionManager {
@@ -31,13 +32,14 @@ public class OccasionManager {
 	@Autowired
 	ContributionDAO contributionDAO;
 
-	public OccasionDO getOccasionInfo(Long occasionId) {
+	public OccasionVO getOccasionInfo(Long occasionId) {
 
-		OccasionDO occasion = occasionDAO.findById(occasionId);
-		occasion.setEvents(eventDAO.findEventsForOccasion(occasionId));
-		occasion.setContacts(contactPersonDAO.findContactsForOccasion(occasionId));
-		occasion.setTotalContributions(contributionDAO.findTotalContributionForOccasion(occasionId));
-		return occasion;
+		OccasionDO occasionDO = occasionDAO.findById(occasionId);
+		OccasionVO occasionVO = new OccasionVO(occasionDO);
+		occasionVO.setEvents(eventDAO.findEventsForOccasion(occasionId));
+		occasionVO.setContacts(contactPersonDAO.findContactsForOccasion(occasionId));
+		occasionVO.setTotalContributions(contributionDAO.findTotalContributionForOccasion(occasionId));
+		return occasionVO;
 	}
 
 	public WishListVO getWishListForOccasion(Long occasionId) {

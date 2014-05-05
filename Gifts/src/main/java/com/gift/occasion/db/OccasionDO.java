@@ -1,7 +1,5 @@
 package com.gift.occasion.db;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class OccasionDO {
 
@@ -15,14 +13,8 @@ public class OccasionDO {
 	private String description;
 	private String imageUrl;
 	private String secretKey;
-	private TotalContributionsVO totalContributions;
-	private List<EventDO> events;
-	private List<ContactPersonDO> contacts;
-	
-	public OccasionDO() {
 
-		this.events = new ArrayList<EventDO>();
-		this.contacts = new ArrayList<ContactPersonDO>();
+	public OccasionDO() {
 	}
 
 	public Long getId() {
@@ -57,22 +49,6 @@ public class OccasionDO {
 		this.description = description;
 	}
 
-	public List<EventDO> getEvents() {
-		return events;
-	}
-
-	public List<ContactPersonDO> getContacts() {
-		return contacts;
-	}
-
-	public void setContacts(List<ContactPersonDO> contacts) {
-		this.contacts = contacts;
-	}
-
-	public void setEvents(List<EventDO> functions) {
-		this.events = functions;
-	}
-
 	public String getType() {
 		return type;
 	}
@@ -87,13 +63,5 @@ public class OccasionDO {
 
 	public void setSecretKey(String secretKey) {
 		this.secretKey = secretKey;
-	}
-
-	public TotalContributionsVO getTotalContributions() {
-		return totalContributions;
-	}
-
-	public void setTotalContributions(TotalContributionsVO totalContributions) {
-		this.totalContributions = totalContributions;
 	}
 }

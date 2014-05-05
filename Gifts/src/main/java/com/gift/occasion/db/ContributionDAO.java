@@ -23,7 +23,7 @@ public class ContributionDAO {
 
 		List<ContributionDO> contributions = connectionProvider
 				.getJdbcTemplate().query(
-						"select * from contribution where occasion_id = ?",
+						"select * from contribution where occasion_id = ? order by name",
 						new Object[] { occasionId },
 						new BeanPropertyRowMapper(ContributionDO.class));
 

@@ -30,6 +30,7 @@ public class ContributionManager {
 		// 2. Add to DB
 		
 		// 3. Send out email notification to contact
+		
 	}
 	
 	private Boolean isValidSecretKey(Long occasionId, String inputSecretKey) {

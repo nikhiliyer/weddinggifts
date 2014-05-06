@@ -2,11 +2,12 @@ package com.gift.occasion.db;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"occasionId", "contactPersonId"})
+@JsonIgnoreProperties({"occasionId", "contactPersonId", "involvedPersonId"})
 public class ContributionDO {
 
 	private Long id;
 	private Long occasionId;
+	private Long involvedPersonId;
 	private Long contactPersonId;
 	private String name;
 	private String phoneNumber;
@@ -116,6 +117,14 @@ public class ContributionDO {
 
 	public void setAmountPledged(Integer amountPledged) {
 		this.amountPledged = amountPledged;
+	}
+
+	public Long getInvolvedPersonId() {
+		return involvedPersonId;
+	}
+
+	public void setInvolvedPersonId(Long involvedPersonId) {
+		this.involvedPersonId = involvedPersonId;
 	}
 
 }

@@ -151,44 +151,6 @@ CREATE TABLE contact_person (\
 \
 insert into contact_person (occasion_id, name, phone_number, email, address) values (1, 'Akhil Iyer', '+91 98861 133941', 'akhil.iy@gmail.com', '2640 18th Main 3rd Cross HAL 2nd Stage Bangalore 08');\
 \
-CREATE TABLE contribution (\
- id SERIAL NOT NULL,\
- occasion_id bigint NOT NULL,\
- contact_person_id bigint,\
- name character varying NOT NULL,\
- phone_number character varying NOT NULL,\
- email character varying NOT NULL,\
- address character varying NOT NULL,\
- custom_message character varying NOT NULL,\
- payment_method character varying NOT NULL,\
- amount_pledged integer NOT NULL,\
-\pard\pardeftab720
-\cf0  amount_collected integer,\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
-\cf0  created_on timestamp without time zone NOT NULL DEFAULT now(),\
- modified_on timestamp without time zone NOT NULL DEFAULT now(),\
- CONSTRAINT contribution_pkey PRIMARY KEY (id),\
- CONSTRAINT contribution_occasion_fk FOREIGN KEY (occasion_id)\
-      REFERENCES occasion (id),\
- CONSTRAINT contribution_contact_person_fk FOREIGN KEY (contact_person_id)\
-      REFERENCES contact_person (id)\
- ) WITH (OIDS=FALSE);\
- \
- ALTER TABLE contribution\
- OWNER TO postgres;\
- COMMENT ON TABLE contribution\
- IS 'contains all contributions for a occasion';\
-\
- CREATE TRIGGER contribution_modified_on\
- BEFORE UPDATE \
- ON contribution\
- FOR EACH ROW\
- EXECUTE PROCEDURE update_modified_on();\
- COMMIT;\
-\
-insert into contribution (occasion_id, contact_person_id, name, phone_number, email, address, custom_message, payment_method, amount) values (1, 1, 'Ashok Aditya', '+91 98861 133941', 'aa@gmail.com', 'Somewhere in Bangalore', 'All the best guys', 'EFT', 1001);\
-insert into contribution (occasion_id, contact_person_id, name, phone_number, email, address, custom_message, payment_method, amount) values (1, 1, 'Tanya', '+91 98861 133941', 'tan@gmail.com', 'Somewhere in Bangalore', 'Happy married life - Tanya', 'CHECK', 2001);\
-\
 CREATE TABLE involved_person (\
  id SERIAL NOT NULL,\
  occasion_id bigint NOT NULL,\
@@ -219,4 +181,42 @@ CREATE TABLE involved_person (\
 insert into involved_person (occasion_id, name, role, phone_number, email, address) values (1, 'Rahul Ram Kumar', 'GROOM', '+91 98861 133941', 'dam@gmail.com', '2640 18th Main 3rd Cross HAL 2nd Stage Bangalore 08');\
 insert into involved_person (occasion_id, name, role, phone_number, email, address) values (1, 'Sandhya', 'BRIDE', '+91 98861 133941', 'sandhya@gmail.com', '2640 18th Main 3rd Cross HAL 2nd Stage Bangalore 08');\
 \
+CREATE TABLE contribution (\
+ id SERIAL NOT NULL,\
+ occasion_id bigint NOT NULL,\
+ contact_person_id bigint,\
+ involved_person_id bigint,\
+ name character varying NOT NULL,\
+ phone_number character varying NOT NULL,\
+ email character varying NOT NULL,\
+ address character varying NOT NULL,\
+ custom_message character varying NOT NULL,\
+ payment_method character varying NOT NULL,\
+ amount_pledged integer NOT NULL,\
+ amount_collected integer,\
+ created_on timestamp without time zone NOT NULL DEFAULT now(),\
+ modified_on timestamp without time zone NOT NULL DEFAULT now(),\
+ CONSTRAINT contribution_pkey PRIMARY KEY (id),\
+ CONSTRAINT contribution_occasion_fk FOREIGN KEY (occasion_id)\
+      REFERENCES occasion (id),\
+ CONSTRAINT contribution_contact_person_fk FOREIGN KEY (contact_person_id)\
+      REFERENCES contact_person (id),\
+ CONSTRAINT contribution_involved_person_fk FOREIGN KEY (involved_person_id)\
+      REFERENCES involved_person (id)\
+ ) WITH (OIDS=FALSE);\
+ \
+ ALTER TABLE contribution\
+ OWNER TO postgres;\
+ COMMENT ON TABLE contribution\
+ IS 'contains all contributions for a occasion';\
+\
+ CREATE TRIGGER contribution_modified_on\
+ BEFORE UPDATE \
+ ON contribution\
+ FOR EACH ROW\
+ EXECUTE PROCEDURE update_modified_on();\
+ COMMIT;\
+\
+insert into contribution (occasion_id, involved_person_id, contact_person_id, name, phone_number, email, address, custom_message, payment_method, amount_pledged) values (1, 1, 1, 'Ashok Aditya', '+91 98861 133941', 'aa@gmail.com', 'Somewhere in Bangalore', 'All the best guys', 'EFT', 1001);\
+insert into contribution (occasion_id, involved_person_id, contact_person_id, name, phone_number, email, address, custom_message, payment_method, amount_pledged) values (1, 1, 1, 'Tanya', '+91 98861 133941', 'tan@gmail.com', 'Somewhere in Bangalore', 'Happy married life - Tanya', 'CHECK', 2001);\
 }

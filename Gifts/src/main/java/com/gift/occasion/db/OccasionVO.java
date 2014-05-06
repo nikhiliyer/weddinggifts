@@ -12,6 +12,7 @@ public class OccasionVO extends OccasionDO {
 	private TotalContributionsVO totalContributions;
 	private List<EventDO> events;
 	private List<ContactPersonDO> contacts;
+	private List<String> someComments;
 
 	public OccasionVO(OccasionDO occasionDO) {
 
@@ -23,6 +24,7 @@ public class OccasionVO extends OccasionDO {
 		this.events = new ArrayList<EventDO>();
 		this.contacts = new ArrayList<ContactPersonDO>();
 		this.involvedPersons = new ArrayList<InvolvedPersonDO>();
+		this.someComments = new ArrayList<String>();
 	}
 
 	public List<EventDO> getEvents() {
@@ -55,5 +57,13 @@ public class OccasionVO extends OccasionDO {
 
 	public void setInvolvedPersons(List<InvolvedPersonDO> involvedPersons) {
 		this.involvedPersons = involvedPersons;
+	}
+
+	public List<String> getSomeComments() {
+		return someComments;
+	}
+
+	public void setSomeComments(List<String> someComments) {
+		this.someComments = someComments;
 	}
 }

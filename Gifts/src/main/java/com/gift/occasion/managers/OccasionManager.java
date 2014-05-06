@@ -44,6 +44,7 @@ public class OccasionManager {
 		occasionVO.setContacts(contactPersonDAO.findContactsForOccasion(occasionId));
 		occasionVO.setTotalContributions(contributionDAO.findTotalContributionForOccasion(occasionId));
 		occasionVO.setInvolvedPersons(involvedPersonDAO.findPeopleInvolvedInOccasion(occasionId));
+		occasionVO.setSomeComments(contributionDAO.getLast3CommentsForOccasion(occasionId));
 		return occasionVO;
 	}
 

@@ -36,12 +36,22 @@ public class ContributionDAO {
 
 	public TotalContributionsVO findTotalContributionForOccasion(Long occasionId) {
 
-		TotalContributionsVO totalContributions = connectionProvider
+		List<ContributionsByInvolvedPersonVO> contributionsByInvolvedPerson = connectionProvider
 				.getJdbcTemplate()
-				.queryForObject(
-						"select sum(amount_pledged) AS total_amount_pledged, sum(amount_collected) AS total_amount_collected from contribution where occasion_id = ?",
+				.query("select name, total_amount_pledged, total_amount_collected from (select sum(amount_pledged) as total_amount_pledged, sum(amount_collected) as total_amount_collected, involved_person_id from contribution where occasion_id = ? group by involved_person_id) a, involved_person p where a.involved_person_id = p.id",
 						new Object[] { occasionId },
-						new BeanPropertyRowMapper(TotalContributionsVO.class));
+						new BeanPropertyRowMapper(
+								ContributionsByInvolvedPersonVO.class));
+		TotalContributionsVO totalContributions = new TotalContributionsVO(contributionsByInvolvedPerson);
 		return totalContributions;
+	}
+	
+	public List<String> getLast3CommentsForOccasion(Long occasionId) {
+
+		return connectionProvider
+				.getJdbcTemplate()
+				.queryForList(
+						"select custom_message from contribution where occasion_id = ? order by created_on desc",
+						new Object[] { occasionId }, String.class);
 	}
 }

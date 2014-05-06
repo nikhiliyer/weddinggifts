@@ -1,29 +1,43 @@
 package com.gift.occasion.db;
 
+import java.util.List;
+
 public class TotalContributionsVO {
-	
-	private Integer totalAmountPledged;
-	private Integer totalAmountCollected;
-	
-	public TotalContributionsVO() {
-				
+
+	private List<ContributionsByInvolvedPersonVO> contributionsByInvolvedPerson;
+
+	public TotalContributionsVO(List<ContributionsByInvolvedPersonVO> contributionsByInvolvedPersons) {
+		this.contributionsByInvolvedPerson = contributionsByInvolvedPersons;
 	}
 
 	public Integer getTotalAmountPledged() {
+
+		Integer totalAmountPledged = 0;
+		for (ContributionsByInvolvedPersonVO contribution : contributionsByInvolvedPerson) {
+
+			if (contribution.getTotalAmountPledged() != null) {
+				
+				totalAmountPledged += contribution.getTotalAmountPledged();
+			}
+		}
 		return totalAmountPledged;
 	}
 
-	public void setTotalAmountPledged(Integer amountPledged) {
-		this.totalAmountPledged = amountPledged;
-	}
-
 	public Integer getTotalAmountCollected() {
+
+		Integer totalAmountCollected = 0;
+		for (ContributionsByInvolvedPersonVO contribution : contributionsByInvolvedPerson) {
+
+			if (contribution.getTotalAmountCollected() != null) {
+				
+				totalAmountCollected += contribution.getTotalAmountCollected();
+			}
+		}
 		return totalAmountCollected;
 	}
 
-	public void setTotalAmountCollected(Integer amountCollected) {
-		this.totalAmountCollected = amountCollected;
+	public List<ContributionsByInvolvedPersonVO> getContributionsByInvolvedPerson() {
+		return contributionsByInvolvedPerson;
 	}
-	
 
 }

@@ -21,11 +21,5 @@ public class OccasionDAO {
 				new BeanPropertyRowMapper(OccasionDO.class));
 		return occasion;
 	}
-	
-	public String getSecretKeyForOccasion(Long occasionId) {
-		
-		OccasionDO occasion = this.findById(occasionId);
-		return occasion.getSecretKey();
-	}
 
 }

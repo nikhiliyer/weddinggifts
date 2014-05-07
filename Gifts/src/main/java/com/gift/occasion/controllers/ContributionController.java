@@ -31,12 +31,44 @@ public class ContributionController {
 		return contributionManager.getContributionsForOccasion(occasionId);
 	}
 	
-	// http://localhost:8080/gift/addContribution.gift?occasionId=1
+	// http://localhost:8080/gift/addContribution.gift
 	@RequestMapping(value = "/addContribution.gift", method = RequestMethod.POST)
-	public @ResponseBody ContributionListVO addContribution(@RequestBody ContributionDO contribution, @RequestHeader(value="secretKey") String secretKey ) {
+	public @ResponseBody AddContributionResponse addContribution(@RequestBody ContributionDO contribution, @RequestHeader(value="secretKey") String secretKey ) {
 
 		log.info("Adding contribution for occasion. Occasion Id: " + contribution.getOccasionId());
-		contributionManager.addContribution();
-		return null;
+		Boolean success = contributionManager.addContribution(contribution, secretKey);
+		AddContributionResponse response;
+		if (success) {
+
+			response = new AddContributionResponse("Success",
+					"Contribution successfully added");
+		} else {
+
+			response = new AddContributionResponse("Failure",
+					"Failed to add contribution. Please check with Admin");
+		}
+		return response;
+	}
+	
+	private class AddContributionResponse {
+		
+		private String status;
+		private String message;
+		
+		public AddContributionResponse(String status, String message) {
+			super();
+			this.status = status;
+			this.message = message;
+		}
+
+		public String getStatus() {
+			return status;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+		
+		
 	}
 }

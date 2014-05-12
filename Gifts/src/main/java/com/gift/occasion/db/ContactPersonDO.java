@@ -8,6 +8,7 @@ public class ContactPersonDO {
 	private String phoneNumber;
 	private String email;
 	private String address;
+	private String imageUrl;
 
 	public ContactPersonDO() {
 
@@ -59,6 +60,14 @@ public class ContactPersonDO {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 }

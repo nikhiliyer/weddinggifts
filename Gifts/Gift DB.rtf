@@ -1,7 +1,7 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
 {\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
 {\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww37900\viewh18680\viewkind0
+\margl1440\margr1440\vieww33400\viewh18380\viewkind0
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs22 \cf0 \CocoaLigature0 postgres/golfbadi\
@@ -21,6 +21,7 @@ postgres=# create database gifts;\
 postgres=# \\q\
 \
 sudo ssh -i GiftServerKey.pem ubuntu@gifts.prod\
+scp -i GiftServerKey.pem WeddingGifts.war ubuntu@gifts.prod:/home/ubuntu\
 \
 CREATE OR REPLACE FUNCTION update_modified_on()\
   RETURNS trigger AS\
@@ -63,7 +64,7 @@ CREATE TABLE occasion (\
  EXECUTE PROCEDURE update_modified_on();\
  COMMIT;\
 \
-insert into occasion (type, title, description, image_url, secret_key) values ('WEDDING', 'Dam & Sandhya Wedding', 'Something warm and funny', 'somepic.jpg\'92, \'91c6fb7ad7adb788559bbe603b98e53589\'92);\
+insert into occasion (type, title, description, image_url) values ('WEDDING', 'Dam & Sandhya Wedding', 'Something warm and funny', 'somepic.jpg\'92);\
 \
 CREATE TABLE gift (\
  id SERIAL NOT NULL,\
@@ -151,7 +152,7 @@ CREATE TABLE contact_person (\
  EXECUTE PROCEDURE update_modified_on();\
  COMMIT;\
 \
-insert into contact_person (occasion_id, name, phone_number, email, address) values (1, 'Akhil Iyer', '+91 98861 133941', 'akhil.iy@gmail.com', '2640 18th Main 3rd Cross HAL 2nd Stage Bangalore 08');\
+insert into contact_person (occasion_id, name, phone_number, email, address, image_url) values (1, 'Akhil Iyer', '+91 98861 133941', 'akhil.iy@gmail.com', '2640 18th Main 3rd Cross HAL 2nd Stage Bangalore 08', 'akhil.jpg');\
 \
 CREATE TABLE involved_person (\
  id SERIAL NOT NULL,\

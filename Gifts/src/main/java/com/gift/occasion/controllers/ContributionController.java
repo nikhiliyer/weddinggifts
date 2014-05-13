@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,19 +32,17 @@ public class ContributionController {
 	
 	// http://localhost:8080/gift/addContribution.gift
 	@RequestMapping(value = "/addContribution.gift", method = RequestMethod.POST)
-	public @ResponseBody AddContributionResponse addContribution(@RequestBody ContributionDO contribution, @RequestHeader(value="secretKey") String secretKey ) {
+	public @ResponseBody AddContributionResponse addContribution(@RequestBody ContributionDO contribution) {
 
 		log.info("Adding contribution for occasion. Occasion Id: " + contribution.getOccasionId());
-		Boolean success = contributionManager.addContribution(contribution, secretKey);
+		Boolean success = contributionManager.addContribution(contribution, null);
 		AddContributionResponse response;
 		if (success) {
 
-			response = new AddContributionResponse("Success",
-					"Contribution successfully added");
+			response = new AddContributionResponse("Success", "Contribution successfully added");
 		} else {
 
-			response = new AddContributionResponse("Failure",
-					"Failed to add contribution. Please check with Admin");
+			response = new AddContributionResponse("Failure", "Failed to add contribution. Please check with Admin");
 		}
 		return response;
 	}

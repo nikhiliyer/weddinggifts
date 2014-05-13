@@ -46,6 +46,9 @@ public class Config {
 		VelocityEngine ve = new VelocityEngine();
 		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
 		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+		ve.setProperty("runtime.log.logsystem.class", "org.apache.velocity.runtime.log.SimpleLog4JLogSystem");
+		ve.setProperty("runtime.log.logsystem.log4j.category", "velocity");
+		ve.setProperty("runtime.log.logsystem.log4j.logger", "velocity");
 		ve.init();
 		return ve;
 	}

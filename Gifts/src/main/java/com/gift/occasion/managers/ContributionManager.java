@@ -75,8 +75,7 @@ public class ContributionManager {
 							.findById(contribution.getContactPersonId());
 					if (contactPerson != null) {
 
-						emailService.sendEmail(this.createNewContributionEmail(
-								contactPerson, contribution));
+						emailService.sendEmail(this.createNewContributionEmail(contactPerson, contribution));
 					}
 				}
 			} catch (Exception e) {
@@ -107,7 +106,8 @@ public class ContributionManager {
 	
 	private Boolean isValidSecretKey(String inputSecretKey) {
 
-		return StringUtils.equalsIgnoreCase(inputSecretKey, SECRET_KEY);
+		// For now, we are saying that if not secret key is passed, it is valid. will have to tighten that up later
+		return StringUtils.isBlank(inputSecretKey) || StringUtils.equalsIgnoreCase(inputSecretKey, SECRET_KEY);
 	}
 	
 	public void getContributedAmountForOccasion(Long occasionId) {

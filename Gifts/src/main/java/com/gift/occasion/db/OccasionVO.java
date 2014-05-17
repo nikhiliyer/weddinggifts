@@ -12,7 +12,7 @@ public class OccasionVO extends OccasionDO {
 	private TotalContributionsVO totalContributions;
 	private List<EventDO> events;
 	private List<ContactPersonDO> contacts;
-	private List<String> someComments;
+	private List<CommentVO> someComments;
 
 	public OccasionVO(OccasionDO occasionDO) {
 
@@ -24,7 +24,7 @@ public class OccasionVO extends OccasionDO {
 		this.events = new ArrayList<EventDO>();
 		this.contacts = new ArrayList<ContactPersonDO>();
 		this.involvedPersons = new ArrayList<InvolvedPersonDO>();
-		this.someComments = new ArrayList<String>();
+		this.someComments = new ArrayList<CommentVO>();
 	}
 
 	public List<EventDO> getEvents() {
@@ -59,11 +59,11 @@ public class OccasionVO extends OccasionDO {
 		this.involvedPersons = involvedPersons;
 	}
 
-	public List<String> getSomeComments() {
+	public List<CommentVO> getSomeComments() {
 		return someComments;
 	}
 
-	public void setSomeComments(List<String> someComments) {
+	public void setSomeComments(List<CommentVO> someComments) {
 		this.someComments = someComments;
 	}
 }

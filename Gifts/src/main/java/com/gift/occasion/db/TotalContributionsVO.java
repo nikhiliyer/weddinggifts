@@ -4,6 +4,7 @@ import java.util.List;
 
 public class TotalContributionsVO {
 
+	private Integer maxGiftPriceForOccasion;
 	private List<ContributionsByInvolvedPersonVO> contributionsByInvolvedPerson;
 
 	public TotalContributionsVO(List<ContributionsByInvolvedPersonVO> contributionsByInvolvedPersons) {
@@ -38,6 +39,14 @@ public class TotalContributionsVO {
 
 	public List<ContributionsByInvolvedPersonVO> getContributionsByInvolvedPerson() {
 		return contributionsByInvolvedPerson;
+	}
+
+	public Integer getMaxGiftPriceForOccasion() {
+		return maxGiftPriceForOccasion;
+	}
+
+	public void setMaxGiftPriceForOccasion(Integer maxGiftPriceForOccasion) {
+		this.maxGiftPriceForOccasion = maxGiftPriceForOccasion;
 	}
 
 }

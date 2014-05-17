@@ -9,6 +9,7 @@ public class ContactPersonDO {
 	private String email;
 	private String address;
 	private String imageUrl;
+	private Boolean primaryContact;
 
 	public ContactPersonDO() {
 
@@ -68,6 +69,14 @@ public class ContactPersonDO {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public Boolean getPrimaryContact() {
+		return primaryContact;
+	}
+
+	public void setPrimaryContact(Boolean primaryContact) {
+		this.primaryContact = primaryContact;
 	}
 
 }

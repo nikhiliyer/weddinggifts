@@ -69,15 +69,7 @@ public class ContributionManager {
 			// 3. Send out email notification to contact
 			try {
 				
-				if (contribution.getContactPersonId() != null) {
-
-					ContactPersonDO contactPerson = contactPersonDAO
-							.findById(contribution.getContactPersonId());
-					if (contactPerson != null) {
-
-						emailService.sendEmail(this.createNewContributionEmail(contactPerson, contribution));
-					}
-				}
+				this.sendEmailToContacts(contribution);
 			} catch (Exception e) {
 
 				log.error(
@@ -91,28 +83,50 @@ public class ContributionManager {
 		return addSuccess;
 	}
 	
-	private EmailVO createNewContributionEmail(ContactPersonDO contactPerson, ContributionDO contribution) {
+	private void sendEmailToContacts(ContributionDO contribution) {
+		
+		ContactPersonDO selectedContactPerson = null;
+		if (contribution.getContactPersonId() != null) {
+			
+			selectedContactPerson = contactPersonDAO.findById(contribution.getContactPersonId());
+		}
+		ContactPersonDO primaryContact = contactPersonDAO.findPrimaryContactForOccasion(contribution.getOccasionId());
+		
+		String emailBody;
+		if (selectedContactPerson != null) {
+			
+			emailBody = this.generateContributionEmailBody(selectedContactPerson, contribution);
+		} else {
+			
+			emailBody = this.generateContributionEmailBody(primaryContact, contribution);
+		}
+		
+		StringBuffer sb = new StringBuffer(primaryContact.getEmail());
+		
+		if (selectedContactPerson != null && !primaryContact.getId().equals(selectedContactPerson.getId())) {
+			
+			sb.append(",").append(selectedContactPerson.getEmail());
+		}
+		emailService.sendEmail(new EmailVO(sb.toString(), "New contribution notification", emailBody));
+	}
+	
+	private String generateContributionEmailBody(ContactPersonDO contactToEmail, ContributionDO contribution) {
 		
 		Template template = velocityEngine.getTemplate("email_templates/add_contribution.vm");
 		VelocityContext vc = new VelocityContext();
-		vc.put("contactName", contactPerson.getName());
+		vc.put("contactName", contactToEmail.getName());
 		vc.put("contributorName", contribution.getName());
 		vc.put("amount", contribution.getAmountPledged());
 		StringWriter writer = new StringWriter();
 		template.merge(vc, writer);
 		String emailBody = writer.toString();
-		return new EmailVO(contactPerson.getEmail(), "New contribution notification", emailBody);
+		return emailBody;
 	}
 	
 	private Boolean isValidSecretKey(String inputSecretKey) {
 
 		// For now, we are saying that if not secret key is passed, it is valid. will have to tighten that up later
 		return StringUtils.isBlank(inputSecretKey) || StringUtils.equalsIgnoreCase(inputSecretKey, SECRET_KEY);
-	}
-	
-	public void getContributedAmountForOccasion(Long occasionId) {
-		
-		
 	}
 
 }

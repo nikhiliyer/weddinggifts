@@ -64,7 +64,7 @@ CREATE TABLE occasion (\
  EXECUTE PROCEDURE update_modified_on();\
  COMMIT;\
 \
-insert into occasion (type, title, description, image_url) values ('WEDDING', 'Dam & Sandhya Wedding', 'Something warm and funny', 'somepic.jpg\'92);\
+insert into occasion (type, title, description, image_url) values ('WEDDING', 'Dam & Sandhya Wedding', \'91<p>Welcome to Sandhya and Rahul''s gift headquarters,</p><p>The wedding day is around the corner and we, some of their friends have got together and tied up with GiftingDreams.com to try and get them that perfect gift. Alone, you or I would find it hard to do so.. but if you AND I get together, we can make it happen.</p><p>So, we sat down with Sandhya and Rahul and found out what their dream gift list would look like. These gifts are in different price ranges and depending on how much we manage to raise, they will get the best possible option.</p><p>This entire initiative is happening with the happy couple\'92s consent. Feel free to check with them if you don\'92t trust us! Haha..</p><p>Please call any of us if you have any doubts or questions. our details are listed below.</p><p>Next step?? Gift Away!! Contribute generously because every drop makes the ocean..</p><p>The Besties</\'91p>, 'http://reliancecloudcontent-live.s3.amazonaws.com/DamSandhya.jpg\'92);\
 \
 CREATE TABLE gift (\
  id SERIAL NOT NULL,\
@@ -92,8 +92,27 @@ CREATE TABLE gift (\
  EXECUTE PROCEDURE update_modified_on();\
  COMMIT;\
 \
-insert into gift (occasion_id, name, description, image_url, price) values (1, 'Harley Davidson Street 750', 'This is pure, liquid-cooled Harley-Davidson muscle and Dark Custom attitude built to conquer the urban world', 'http://www.harley-davidson.com/en_US/Media/images/2015-Motorcycles/model-popup/thumbs/15-hd-street-750-bs.png', 500000);\
-insert into gift (occasion_id, name, description, image_url, price) values (1, 'JBL Pulse', 'Rock out with your pulse out', 'coolpic.jpg', 15000);\
+insert into gift (occasion_id, name, description, image_url, price) values  (1, 'Double Quilt from Portico', 'Ever since these two were little kids their favourite part about staying in hotels were the big fluffy white quilts and funnily enough that\'92s something that still excites them to this day, so we thought it would be nice to bring that fluffy quilt home', 'http://cdn1-cont9.sweetcouch.in/861427-spread-star-single-quilt.jpg', 7000);\
+\
+insert into gift (occasion_id, name, description, image_url, price) values (1, 'Spa Day', 'Its been a crazy couple of months for the couple, from wedding prep to invitations and all the other chaos that comes with getting hitched, a day at a spa seems apt to wind down once its all over','http://thekarmadayspa.com/images/contentImages/day_spa.jpg', 10000);\
+\
+insert into gift (occasion_id, name, description, image_url, price) values (1, 'Spa Day', 'Dam''s room is soon gonna have it''s occupancy doubled and a nice single seater sofa in the corner would be much needed to keep things comfy','http://www.hindu.com/mp/2011/02/17/images/2011021751780301.jpg', 20000);\
+\
+insert into gift (occasion_id, name, description, image_url, price)  values (1, 'Music System for Car', 'Sandhya''s most favourite thing in the world after her future husband( I think after) is her sturdy 14 year old Mitsubishi Lancer that she''s bringing along and post the wedding this will be the official couple car wherever the go. Sadly a decent music system is lacking in this Japanese beauty','http://www.hindu.com/mp/2011/02/17/images/2011021751780301.jpg', 25000);\
+\
+insert into gift (occasion_id, name, description, image_url, price) values (1, 'Couple Gym Membership for a year', 'Well you''ve seen how these two have slimmed down this past year, with Dam''s mothers cooking available anytime they need all the help they can get to keep fit','http://blog.walkjogrun.net/wp-content/uploads/2014/01/how-to-pick-a-gym-membership.jpg', 40000);\
+\
+insert into gift (occasion_id, name, description, image_url, price) values (1, 'Well Stocked Wooden Bar Unit', 'You know how they both love to entertain and two things that would really help them would be a well stocked bar and a Bose sound dock',\
+'http://media.tumblr.com/17a21b89f4af6624a011604448918e15/tumblr_inline_monpkhNhFe1qz4rgp.jpg', 50000);\
+\
+insert into gift (occasion_id, name, description, image_url, price) values (1, 'Trip To Goa', 'It''s undoubtedly their favourite holiday destination and I know they would love a trip this year without worrying about how to finance it and where to scrimp','http://travel-ideas.makemytrip.com/storage/Goa-Road-Sign.jpg?__SQUARESPACE_CACHEVERSION=1363585921828', 50000);\
+\
+insert into gift (occasion_id, name, description, image_url, price) values (1, 'Tickets to Dubai', 'Like all good Mallu''s they have a strong connection with the "Gelf", Sandhya''s dying to make her first Dubai trip with Dam and visit her brother and family , giving them wings would make this dream come true','http://cheap-flights.yatra.com/images/dubai.gif', 60000);\
+\
+insert into gift (occasion_id, name, description, image_url, price) values (1, 'Rent for a year/security deposit', 'While they are staying at Dam''s place to begin with they dearly hope to soon get a place of their own once they have the money, any push in this direction would be amazing','http://www.rentcafe.com/blog/wp-content/uploads/2012/08/Fotolia_30691356_Subscription_XL.jpg', 100000);\
+\
+insert into gift (occasion_id, name, description, image_url, price) values (1, 'Harley Davidson -Street 750', 'Well it''s a Harley, like most men a lifelong dream of Dam, enough said I think',\
+'http://www.harley-davidson.com/en_US/Media/images/2015-Motorcycles/model-popup/thumbs/15-hd-street-750-bs.png', 500000);\
 \
 \
 CREATE TABLE event (\
@@ -133,6 +152,7 @@ CREATE TABLE contact_person (\
  email character varying NOT NULL,\
  address character varying NOT NULL,\
  image_url character varying NOT NULL,\
+ primary_contact boolean not null default false,\
  created_on timestamp without time zone NOT NULL DEFAULT now(),\
  modified_on timestamp without time zone NOT NULL DEFAULT now(),\
  CONSTRAINT contact_person_pkey PRIMARY KEY (id),\
@@ -222,4 +242,8 @@ CREATE TABLE contribution (\
 \
 insert into contribution (occasion_id, involved_person_id, contact_person_id, name, phone_number, email, address, custom_message, payment_method, amount_pledged) values (1, 1, 1, 'Ashok Aditya', '+91 98861 133941', 'aa@gmail.com', 'Somewhere in Bangalore', 'All the best guys', 'EFT', 1001);\
 insert into contribution (occasion_id, involved_person_id, contact_person_id, name, phone_number, email, address, custom_message, payment_method, amount_pledged) values (1, 1, 1, 'Tanya', '+91 98861 133941', 'tan@gmail.com', 'Somewhere in Bangalore', 'Happy married life - Tanya', 'CHECK', 2001);\
+\
+\
+\
+\
 }

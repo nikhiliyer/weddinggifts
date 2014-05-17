@@ -11,6 +11,9 @@ import com.gift.dal.ConnectionProvider;
 @Repository
 public class ContactPersonDAO {
 	
+	private static final String PRIMARY_CONTACT_FOR_OCCASION_SQL = "select * from contact_person where occasion_id = ? and primary_contact = true";
+	private static final String CONTACT_PERSON_BY_ID_SQL = "select * from contact_person where id = ?";
+	private static final String CONTACTS_FOR_OCCASION_SQL = "select * from contact_person where occasion_id = ?";
 	@Autowired
 	ConnectionProvider connectionProvider;
 
@@ -18,7 +21,7 @@ public class ContactPersonDAO {
 
 	public List<ContactPersonDO> findContactsForOccasion(Long occasionId) {
 
-		List<ContactPersonDO> contacts = connectionProvider.getJdbcTemplate().query("select * from contact_person where occasion_id = ?",
+		List<ContactPersonDO> contacts = connectionProvider.getJdbcTemplate().query(CONTACTS_FOR_OCCASION_SQL,
 				new Object[] { occasionId }, new BeanPropertyRowMapper(ContactPersonDO.class));
 
 		return contacts;
@@ -26,10 +29,18 @@ public class ContactPersonDAO {
 	
 	public ContactPersonDO findById(Long id) {
 
-		ContactPersonDO contactPerson = connectionProvider.getJdbcTemplate().queryForObject("select * from contact_person where id = ?",
+		ContactPersonDO contactPerson = connectionProvider.getJdbcTemplate().queryForObject(CONTACT_PERSON_BY_ID_SQL,
 				new Object[] { id },
 				new BeanPropertyRowMapper(ContactPersonDO.class));
 		return contactPerson;
+	}
+	
+	public ContactPersonDO findPrimaryContactForOccasion(Long occasionId) {
+		
+		ContactPersonDO primaryContact = connectionProvider.getJdbcTemplate().queryForObject(PRIMARY_CONTACT_FOR_OCCASION_SQL,
+				new Object[] { occasionId }, new BeanPropertyRowMapper(ContactPersonDO.class));
+
+		return primaryContact;
 	}
 
 }

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>giftAway.gift</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/default.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<link rel="stylesheet" href="css/docs.css">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+    
+	<script src="js/modernizr.custom.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class='md-trigger gift' data-modal='' >
+  
+  	
+  
+  	<div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">giftAway</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="gift.html">go gift</a>
+            </li>
+            <li>
+              <a href="#" class='click md-trigger' data-modal='modal'>how it works?</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container maincontent">
+   
+        <div class="row">
+        
+	        <div class="content col-lg-4">
+		        <form id="giftForm" role="form" method="post" action="" >
+		        	<div class="content-block">
+			        	
+			        	  <div class="form-group">
+						    <label>Name</label>
+						    <input type="text" class="form-control" id="name" name="name" placeholder="Name (e.g. John Doe)...">
+						  </div>
+						  <div class="form-group">
+						    <label>Phone</label>
+						    <input type="phone" class="form-control" id="phone" name="phone" placeholder="Phone (numbers only)...">
+						  </div>
+						  <div class="form-group">
+						    <label>Email address</label>
+						    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email....">
+						  </div>
+						  <div class="form-group">
+						    <label>Gift amount (Rs)</label>
+						    <input type="text" class="form-control" id="amount" name="amount" placeholder="Gift amount (e.g 8,985)....">
+						  </div>
+						  <div class="tab-pane" id="hand">
+						  	  <label>Pick a person to hand it to</label>	
+							  <div class="form-group">
+							    <select name="people" class="">
+					              <option value="0">Aesop</option>
+					              <option value="1">Bernie</option>
+					              <option value="2">Cathy</option>
+					              <option value="3">Dan</option>
+						        </select>
+							  </div>
+						  </div>
+						  <div class="form-group">
+						  	<label>Address to collect from</label>
+						    <textarea id="address" name="address" rows="6" placeholder="Enter your address.."></textarea>
+						  </div>
+						  <div class="form-group">
+						  	<label>Personal message</label>
+						    <textarea id="comments" name="comments" rows="6" placeholder="Enter your message.."></textarea>
+						  </div>
+						
+		        	</div>
+		        
+					<div class="gift-options">
+			           <!-- Nav tabs -->
+					   
+						<ul class="nav nav-tabs">
+						  <li class="active"><a href="#wire" data-toggle="tab">Wire</a></li>
+						  <li><a href="#cheque" data-toggle="tab">Cheque</a></li>
+						  <li><a href="#hand" data-toggle="tab">Hand it</a></li>
+						</ul>
+						
+						<!-- Tab panes -->
+						<div class="tab-content">
+						  <div class="tab-pane active" id="wire">
+						  	  Account number<br/>
+						  	  Account holder's name<br/>
+							  Bank name<br/>
+							  Bank branch<br/>
+							  Bank address<br/>
+							  IFSc code<br/>
+							  SWIFT code<br/>
+						  </div>
+						  <div class="tab-pane" id="cheque">
+						  	  Account number<br/>
+						  	  Account holder's name<br/>
+							  Bank name<br/>
+							  Bank branch<br/>
+							  Bank address<br/>
+							  IFSc code<br/>
+							  SWIFT code<br/>
+						  </div>
+						  <div class="tab-pane" id="hand">
+						  	  Account number<br/>
+						  	  Account holder's name<br/>
+							  Bank name<br/>
+							  Bank branch<br/>
+							  Bank address<br/>
+							  IFSc code<br/>
+							  SWIFT code<br/>
+						  </div>
+						
+						  
+						</div>
+						<!--end tab panes-->
+						<button type="submit" class="btn btn-danger">Gift Now</button>
+					</div>
+					
+		       </form>  
+	        </div>
+			<!--end left content-->
+			
+	        <div class="sidebar col-lg-8 clearfix">
+	        	
+	        	<!-- <div class="vertical-slider" id="vertical-slider" style="width:1000px"></div> -->
+	        	<!-- <div id="vslider" class="pull-left"></div> -->
+	        	
+	        	<div class="pointer">
+		        	<div class="info-text pull-left">
+		        		<span id="change-text" class="text-info"></span>
+		        	</div>
+		        	<div id="pin" class="floating pin pull-right"></div>
+	        	</div>
+	        	<div class="progress">
+		            <div id="progbar" class="progress-bar"></div>
+		            <div class="start-val">0</div>
+		        </div>
+		        
+	        	<div class="pull-right giftboxes">
+		        	
+		        	<!--end giftbox-->
+		        	<div class="giftbox clearfix">
+		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
+		        		<div class="pull-left gifttitle">
+		        			<h6>Some gift name or title</h6>
+		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
+		        		</div>
+		        	</div>
+		        	<!--end giftbox-->
+		        	<div class="giftbox clearfix">
+		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
+		        		<div class="pull-left gifttitle">
+		        			<h6>Some gift name or title</h6>
+		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
+		        		</div>
+		        	</div>
+		        	<!--end giftbox-->
+		        	<div class="giftbox clearfix">
+		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
+		        		<div class="pull-left gifttitle">
+		        			<h6>Some gift name or title</h6>
+		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
+		        		</div>
+		        	</div>
+		        	<!--end giftbox-->
+		        	<div class="giftbox clearfix">
+		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
+		        		<div class="pull-left gifttitle">
+		        			<h6>Some gift name or title</h6>
+		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
+		        		</div>
+		        	</div>
+		        	<!--end giftbox-->
+		        	<div class="giftbox clearfix">
+		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
+		        		<div class="pull-left gifttitle">
+		        			<h6>Some gift name or title</h6>
+		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
+		        		</div>
+		        	</div>
+		        	<!--end giftbox-->
+		        	
+		        	
+		        	
+	        	</div>
+	        	<!--end gift boxes-->
+	        </div>
+			<!--end sidebar-->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+		<!-- how it works goes here         -->
+    	<div class="md-modal md-effect-4" id="modal">
+			<div class="md-content">
+				<h3>How It Works</h3>
+				<div>
+					<p>Here's what you need to know</p>
+					<ol>
+						<li><strong>Pick side:</strong> blah blah blah</li>
+						<li><strong>Pledge amount:</strong> blah blah blah</li>
+						<li><strong>Send a custom message:</strong> blah blah blah</li>
+						<li><strong>Submit:</strong> blah blah blah</li>
+					</ol>
+					<button class="md-close">Close me!</button>
+				</div>
+			</div>
+		</div>
+		<div class="md-overlay"></div><!-- the overlay element -->
+		
+    </div>
+    <!-- /.container -->
+	
+	
+	
+    <!-- Load JS here for greater good =============================-->  
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="bootstrap/js/google-code-prettify/prettify.js"></script>
+    <script src="js/application.js"></script>
+    
+	<script src="js/classie.js"></script>
+	<script src="js/modalEffects.js"></script>
+
+	<!-- for the blur effect -->
+	<script>
+		// this is important for IEs
+		var polyfilter_scriptpath = '/js/';
+	</script>
+	<script src="js/cssParser.js"></script>
+	<script src="js/css-filters-polyfill.js"></script>
+	
+	<script src="js/main.js"></script>
+    
+  </body>
+</html>

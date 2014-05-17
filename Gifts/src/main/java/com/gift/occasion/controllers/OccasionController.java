@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gift.occasion.db.OccasionDO;
 import com.gift.occasion.db.OccasionVO;
 import com.gift.occasion.managers.OccasionManager;
 import com.gift.occasion.managers.WishListVO;
@@ -26,16 +27,24 @@ public class OccasionController {
 
 	// http://localhost:8080/gift/occasionInfo.gift?occasionId=1
 	@RequestMapping(value = "/occasionInfo.gift", method = RequestMethod.GET)
-	public @ResponseBody OccasionVO occasionInfo(@RequestParam(value = "occasionId", required = true) Long occasionId) {
+	public @ResponseBody OccasionVO occasionInfo(@RequestParam(value = "occasionId", required = false) Long occasionId) {
+		
+		if (occasionId == null) {
 
+			occasionId = OccasionDO.DEFAULT_OCCASION_ID;
+		}
 		log.info("Request for occasion info. Occasion Id " + occasionId);
 		return occasionManager.getOccasionInfo(occasionId);
 	}
 
 	// http://localhost:8080/gift/wishList.gift?occasionId=1
 	@RequestMapping(value = "/wishList.gift", method = RequestMethod.GET)
-	public @ResponseBody WishListVO wishList(@RequestParam(value = "occasionId", required = true) Long occasionId) {
+	public @ResponseBody WishListVO wishList(@RequestParam(value = "occasionId", required = false) Long occasionId) {
 
+		if (occasionId == null) {
+
+			occasionId = OccasionDO.DEFAULT_OCCASION_ID;
+		}
 		log.info("Request wish list for occasion. Occasion Id: " + occasionId);
 		return occasionManager.getWishListForOccasion(occasionId);
 	}

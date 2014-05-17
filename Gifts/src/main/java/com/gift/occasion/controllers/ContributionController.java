@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gift.occasion.db.ContributionDO;
+import com.gift.occasion.db.OccasionDO;
 import com.gift.occasion.managers.ContributionListVO;
 import com.gift.occasion.managers.ContributionManager;
 
@@ -24,8 +25,12 @@ public class ContributionController {
 
 	// http://localhost:8080/gift/contributionList.gift?occasionId=1
 	@RequestMapping(value = "/contributionList.gift", method = RequestMethod.GET)
-	public @ResponseBody ContributionListVO contributionList(@RequestParam(value = "occasionId", required = true) Long occasionId) {
+	public @ResponseBody ContributionListVO contributionList(@RequestParam(value = "occasionId", required = false) Long occasionId) {
 
+		if(occasionId==null) {
+			
+			occasionId = OccasionDO.DEFAULT_OCCASION_ID;
+		}
 		log.info("Request contributions for occasion. Occasion Id: "+ occasionId);
 		return contributionManager.getContributionsForOccasion(occasionId);
 	}

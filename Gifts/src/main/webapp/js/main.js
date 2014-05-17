@@ -133,7 +133,7 @@ function setGiftBoxes(){
 
 function getWishList(){ //fetch Wish List JSON
 
-	var jqxhr = $.getJSON( 'http://localhost:8080/gift/wishList.json', function(wishlist) {
+	var jqxhr = $.getJSON( '/WeddingGifts/wishList.json', function(wishlist) {
 	  console.log("acquired wishlist...");
 	  maxGiftVal = wishlist.gifts[0].price;
 	});
@@ -146,7 +146,7 @@ function getWishList(){ //fetch Wish List JSON
 
 function getInfo(){ //fetch Occasion Info JSON 
 	
-	var jqxhr = $.getJSON( 'http://localhost:8080/gift/occasionInfo.gift', function(info) {
+	var jqxhr = $.getJSON( '/WeddingGifts/occasionInfo.gift', function(info) {
 	  console.log("acquired occasion info...");
 	  //console.log(info.title);
 	  	if( !$('body').hasClass("populated") ){

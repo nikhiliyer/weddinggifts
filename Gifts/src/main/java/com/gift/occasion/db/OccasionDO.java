@@ -4,6 +4,7 @@ package com.gift.occasion.db;
 public class OccasionDO {
 
 	public static final long DEFAULT_OCCASION_ID = 1L;
+	public static final long DEFAULT_INVOLVED_PERSON_ID = 1L;
 	
 	public enum OccasionType {
 		WEDDING, BIRTHDAY

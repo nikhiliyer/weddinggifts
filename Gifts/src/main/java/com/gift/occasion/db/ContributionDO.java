@@ -2,7 +2,7 @@ package com.gift.occasion.db;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"occasionId", "contactPersonId", "involvedPersonId"})
+//@JsonIgnoreProperties({"occasionId", "contactPersonId", "involvedPersonId"})
 public class ContributionDO {
 
 	private Long id;

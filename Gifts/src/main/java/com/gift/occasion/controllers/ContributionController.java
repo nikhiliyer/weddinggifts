@@ -39,6 +39,14 @@ public class ContributionController {
 	@RequestMapping(value = "/addContribution.gift", method = RequestMethod.POST)
 	public @ResponseBody AddContributionResponse addContribution(@RequestBody ContributionDO contribution) {
 
+		if (contribution.getOccasionId() == null) {
+
+			contribution.setOccasionId(OccasionDO.DEFAULT_OCCASION_ID);
+		}
+		if (contribution.getInvolvedPersonId() == null) {
+
+			contribution.setInvolvedPersonId(OccasionDO.DEFAULT_INVOLVED_PERSON_ID);
+		}
 		log.info("Adding contribution for occasion. Occasion Id: " + contribution.getOccasionId());
 		Boolean success = contributionManager.addContribution(contribution, null);
 		AddContributionResponse response;

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>giftAway.gift</title>
+    <title>giftingdreams.gift</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
@@ -25,14 +25,14 @@
       <script src="js/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class='md-trigger gift' data-modal='' >
+  <body class='md-trigger gift' data-modal='modal' >
   
   	
   
   	<div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="index.html" class="navbar-brand">giftAway</a>
+          <a href="index.html" class="navbar-brand">GiftingDreams</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -42,12 +42,22 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="gift.html">go gift</a>
+              <a href="gift.html">Gift</a>
             </li>
             <li>
-              <a href="#" class='click md-trigger' data-modal='modal'>how it works?</a>
+              <a href="#" class='click md-trigger' data-modal='modal'>How It Works?</a>
+            </li>
+            <li class="visible-xs visible-sm hidden-lg hidden-md">
+	          <div class="interested small clearfix info-header">
+				  <label>Interested?</label>
+				  <p>+91 98861 33941</p>
+			  </div>
             </li>
           </ul>
+          <div class="interested pull-right clearfix hidden-xs hidden-sm info-header">
+			  <label>Interested?</label>
+			  <p>+91 98861 33941</p>
+		  </div>
 
         </div>
       </div>
@@ -58,90 +68,114 @@
         <div class="row">
         
 	        <div class="content col-lg-4">
-		        <form id="giftForm" role="form" method="post" action="" >
+				
+				<h6 class="text-center">Contribution ends in..</h6>
+				<div id="countdown" data-countdown="2014/06/20"></div>
+				
+		        <form id="giftForm" role="form" method="post" action="#" data-parsley-validate>
+					<input id="occid" name="occid" type="hidden" value="">
 		        	<div class="content-block">
 			        	
 			        	  <div class="form-group">
-						    <label>Name</label>
-						    <input type="text" class="form-control" id="name" name="name" placeholder="Name (e.g. John Doe)...">
+						    <label class="text-danger">Name *</label>
+						    <input type="text" class="form-control" id="name" name="name" placeholder="Name (e.g. John Doe)..." data-parsley-required>
 						  </div>
 						  <div class="form-group">
-						    <label>Phone</label>
-						    <input type="phone" class="form-control" id="phone" name="phone" placeholder="Phone (numbers only)...">
+						    <label class="text-danger">Phone *</label>
+						    <input type="phone" class="form-control" id="phone" name="phone" type="number" placeholder="Phone (number only)..." data-parsley-required data-parsley-type="digits">
 						  </div>
 						  <div class="form-group">
-						    <label>Email address</label>
-						    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email....">
+						    <label class="text-danger">Email address *</label>
+						    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email...." data-parsley-required>
 						  </div>
 						  <div class="form-group">
-						    <label>Gift amount (Rs)</label>
-						    <input type="text" class="form-control" id="amount" name="amount" placeholder="Gift amount (e.g 8,985)....">
+						    <label class="text-danger">Gift amount (Rs) *</label>
+						    <input type="text" class="form-control" id="amount" name="amount" type="number" placeholder="Gift amount (e.g 8985)...." data-parsley-required data-parsley-type="number">
 						  </div>
 						  <div class="tab-pane" id="hand">
-						  	  <label>Pick a person to hand it to</label>	
+						  	  <label class="text-danger">Point of contact *</label>	
 							  <div class="form-group">
-							    <select name="people" class="">
-					              <option value="0">Aesop</option>
-					              <option value="1">Bernie</option>
-					              <option value="2">Cathy</option>
-					              <option value="3">Dan</option>
+							    <select name="people" id="people" class="" data-parsley-required>
 						        </select>
 							  </div>
 						  </div>
 						  <div class="form-group">
-						  	<label>Address to collect from</label>
+						  	<label>Address</label>
 						    <textarea id="address" name="address" rows="6" placeholder="Enter your address.."></textarea>
 						  </div>
 						  <div class="form-group">
-						  	<label>Personal message</label>
-						    <textarea id="comments" name="comments" rows="6" placeholder="Enter your message.."></textarea>
+						  	<label class="text-danger">Your message to the couple *</label>
+						    <textarea id="message" name="message" rows="6" placeholder="Enter your message.." data-parsley-required></textarea>
 						  </div>
 						
 		        	</div>
 		        
 					<div class="gift-options">
 			           <!-- Nav tabs -->
-					   
-						<ul class="nav nav-tabs">
-						  <li class="active"><a href="#wire" data-toggle="tab">Wire</a></li>
-						  <li><a href="#cheque" data-toggle="tab">Cheque</a></li>
-						  <li><a href="#hand" data-toggle="tab">Hand it</a></li>
+						
+						<ul class="nav nav-radios">
+						  <li class="">
+							  <label class="radio">
+								  <input type="radio" id="payment" name="payment" value="Wire" data-toggle="radio" checked>Wire it
+							  </label>
+						  </li>
+						  <li>
+							  <label class="radio">
+								  <input type="radio" id="payment" name="payment" value="Drop" data-toggle="radio">Drop it
+							  </label>
+						  </li>
+						  <li>
+							  <label class="radio">
+								  <input type="radio" id="payment" name="payment" value="Hand" data-toggle="radio">Hand it
+							  </label>	
+						  </li>
 						</ul>
-						
-						<!-- Tab panes -->
-						<div class="tab-content">
-						  <div class="tab-pane active" id="wire">
-						  	  Account number<br/>
-						  	  Account holder's name<br/>
-							  Bank name<br/>
-							  Bank branch<br/>
-							  Bank address<br/>
-							  IFSc code<br/>
-							  SWIFT code<br/>
+						 
+						  <div class="payment-info Wire active">
+							  <p>(out of India also)</p>
+							  <p>Use your net banking or wire transfer option at your bank and transfer your contribution to the following account</p>
+							  <a href="#" class="click md-trigger" data-modal="howtowire">More details?</a></br></br>
+						  	  <div class="labels">
+	  						  	  Account number:<br/>
+	  						  	  Account holder's name:<br/>
+	  							  Account Type:<br/>
+	  							  Bank name: <br/>
+	  							  Bank branch:<br/>
+								  IFSc Code:<br/>
+								  SWIFT Code:<br/>
+						  	  </div>
+							  <div class="info">
+	  						  	  <strong> 50200005591794</strong><br/>
+	  						  	  <strong> Akhil Iyer</strong><br/>
+	  							  <strong> Current</strong><br/>
+	  							  <strong> HDFC Bank</strong><br/>
+	  							  <strong> Kasturba Road</strong><br/>
+	  							  <strong> HDFC0000009</strong><br/>
+	  							  <strong> HDFCINBB</strong><br/>
+								
+							  </div>
 						  </div>
-						  <div class="tab-pane" id="cheque">
-						  	  Account number<br/>
-						  	  Account holder's name<br/>
-							  Bank name<br/>
-							  Bank branch<br/>
-							  Bank address<br/>
-							  IFSc code<br/>
-							  SWIFT code<br/>
+						  <div class="payment-info Drop">
+							  <p>Drop your cash/cheque contribution at your nearest HDFC bank branch or HDFC bank ATM (cheque only) with the following account details.</p>
+						  	  <div class="labels">
+	  						  	  Account number:<br/>
+	  						  	  Account holder's name:<br/>
+	  							  Account Type:<br/>
+	  							  Bank name: <br/>
+	  							  Bank branch:<br/>
+						  	  </div>
+							  <div class="info">
+	  						  	  <strong> 50200005591794</strong><br/>
+	  						  	  <strong> Akhil Iyer</strong><br/>
+	  							  <strong> Current</strong><br/>
+	  							  <strong> HDFC Bank</strong><br/>
+	  							  <strong> Kasturba Road</strong><br/>
+							  </div>
 						  </div>
-						  <div class="tab-pane" id="hand">
-						  	  Account number<br/>
-						  	  Account holder's name<br/>
-							  Bank name<br/>
-							  Bank branch<br/>
-							  Bank address<br/>
-							  IFSc code<br/>
-							  SWIFT code<br/>
+						  <div class="payment-info Hand">
+						  	  Choose a person from the <strong>"Point of Contact"</strong> list and hand over your contribution to him/her in cash/cheque. 
 						  </div>
-						
-						  
-						</div>
-						<!--end tab panes-->
-						<button type="submit" class="btn btn-danger">Gift Now</button>
+						 <div class="text-center"><button type="submit" class="btn btn-danger">Pledge</button></div>
 					</div>
 					
 		       </form>  
@@ -155,59 +189,27 @@
 	        	
 	        	<div class="pointer">
 		        	<div class="info-text pull-left">
-		        		<span id="change-text" class="text-info"></span>
+		        		<span id="change-text" class="text-info"> We are almost halfway there</span>
 		        	</div>
 		        	<div id="pin" class="floating pin pull-right"></div>
 	        	</div>
 	        	<div class="progress">
-		            <div id="progbar" class="progress-bar"></div>
+		            <div id="progbar" class="progress-bar" style="height: 0%"></div>
 		            <div class="start-val">0</div>
 		        </div>
 		        
 	        	<div class="pull-right giftboxes">
 		        	
-		        	<!--end giftbox-->
-		        	<div class="giftbox clearfix">
-		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
-		        		<div class="pull-left gifttitle">
-		        			<h6>Some gift name or title</h6>
-		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
-		        		</div>
-		        	</div>
-		        	<!--end giftbox-->
-		        	<div class="giftbox clearfix">
-		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
-		        		<div class="pull-left gifttitle">
-		        			<h6>Some gift name or title</h6>
-		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
-		        		</div>
-		        	</div>
-		        	<!--end giftbox-->
-		        	<div class="giftbox clearfix">
-		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
-		        		<div class="pull-left gifttitle">
-		        			<h6>Some gift name or title</h6>
-		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
-		        		</div>
-		        	</div>
-		        	<!--end giftbox-->
-		        	<div class="giftbox clearfix">
-		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
-		        		<div class="pull-left gifttitle">
-		        			<h6>Some gift name or title</h6>
-		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
-		        		</div>
-		        	</div>
-		        	<!--end giftbox-->
-		        	<div class="giftbox clearfix">
-		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
-		        		<div class="pull-left gifttitle">
-		        			<h6>Some gift name or title</h6>
-		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
-		        		</div>
-		        	</div>
-		        	<!--end giftbox-->
 		        	
+		        	<!-- <div class="giftbox available clearfix">
+						<span class="sticker">available!</span>
+		        		<div class="pull-left giftimg"><img src="images/icons/svg/gift-box.svg" ></div>
+		        		<div class="pull-left gifttitle">
+		        			<h6>Some gift name or title</h6>
+		        			<p>Short description goes here. Short description goes here. Short description goes here.</p>
+		        		</div>
+		        	</div> -->
+		        	<!--end giftbox -->
 		        	
 		        	
 	        	</div>
@@ -217,12 +219,6 @@
         </div>
         
         
-        
-        
-        
-        
-        
-        
 		<!-- how it works goes here         -->
     	<div class="md-modal md-effect-4" id="modal">
 			<div class="md-content">
@@ -230,15 +226,33 @@
 				<div>
 					<p>Here's what you need to know</p>
 					<ol>
-						<li><strong>Pick side:</strong> blah blah blah</li>
-						<li><strong>Pledge amount:</strong> blah blah blah</li>
-						<li><strong>Send a custom message:</strong> blah blah blah</li>
-						<li><strong>Submit:</strong> blah blah blah</li>
+						<li><strong>Select: </strong>Couple picks gifts at various price ranges</li>
+						<li><strong>Fund: </strong>Friends contribute</li>
+						<li><strong>Gift: </strong>Contributions pooled and gift delivered to couple with personalized messages</li>
 					</ol>
 					<button class="md-close">Close me!</button>
 				</div>
 			</div>
 		</div>
+		
+    	<div class="md-modal md-effect-2" id="howtowire">
+			<div class="md-content">
+				<h3>How to wire money</h3>
+				<div>
+					<ol>
+						<li>Log into your net banking</li>
+						<li>If you have an hdfc bank account, select "funds transfer within bank".</li>
+						<li>Else, if you have any other bank account, select "funds transfer to other bank".</li>
+						<li>Select "add a beneficiary" and enter the account details as mentioned in the "Wire" section here.</li>
+						<li>Wait unil account registration completes. This may take up to 12 hours.</li>
+						<li>Transfer your contribution to the repository.</li>
+						<li>Smile</li>
+					</ol>
+					<button class="md-close">Close me!</button>
+				</div>
+			</div>
+		</div>
+		
 		<div class="md-overlay"></div><!-- the overlay element -->
 		
     </div>
@@ -247,31 +261,23 @@
 	
 	
     <!-- Load JS here for greater good =============================-->  
-    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-select.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-    <script src="js/flatui-checkbox.js"></script>
     <script src="js/flatui-radio.js"></script>
-    <script src="js/jquery.tagsinput.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
-    <script src="bootstrap/js/google-code-prettify/prettify.js"></script>
-    <script src="js/application.js"></script>
-    
 	<script src="js/classie.js"></script>
 	<script src="js/modalEffects.js"></script>
-
 	<!-- for the blur effect -->
 	<script>
 		// this is important for IEs
 		var polyfilter_scriptpath = '/js/';
 	</script>
-	<script src="js/cssParser.js"></script>
-	<script src="js/css-filters-polyfill.js"></script>
-	
+	<script src="js/plugins.js"></script>
+	<script src="js/numeral.min.js"></script>
+	<script src="js/parsley.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="//use.edgefonts.net/source-sans-pro:n2,n3,n4,n6,n7,n9,i9.js"></script> 
     
   </body>
 </html>

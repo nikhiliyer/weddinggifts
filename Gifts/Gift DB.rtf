@@ -96,7 +96,7 @@ insert into gift (occasion_id, name, description, image_url, price) values  (1, 
 \
 insert into gift (occasion_id, name, description, image_url, price) values (1, 'Spa Day', 'Its been a crazy couple of months for the couple, from wedding prep to invitations and all the other chaos that comes with getting hitched, a day at a spa seems apt to wind down once its all over','http://thekarmadayspa.com/images/contentImages/day_spa.jpg', 10000);\
 \
-insert into gift (occasion_id, name, description, image_url, price) values (1, 'Spa Day', 'Dam''s room is soon gonna have it''s occupancy doubled and a nice single seater sofa in the corner would be much needed to keep things comfy','http://www.hindu.com/mp/2011/02/17/images/2011021751780301.jpg', 20000);\
+insert into gift (occasion_id, name, description, image_url, price) values (1, '\CocoaLigature1 Sofa from Fabindia\CocoaLigature0 ', 'Dam''s room is soon gonna have it''s occupancy doubled and a nice single seater sofa in the corner would be much needed to keep things comfy','http://www.hindu.com/mp/2011/02/17/images/2011021751780301.jpg', 20000);\
 \
 insert into gift (occasion_id, name, description, image_url, price)  values (1, 'Music System for Car', 'Sandhya''s most favourite thing in the world after her future husband( I think after) is her sturdy 14 year old Mitsubishi Lancer that she''s bringing along and post the wedding this will be the official couple car wherever the go. Sadly a decent music system is lacking in this Japanese beauty','http://www.hindu.com/mp/2011/02/17/images/2011021751780301.jpg', 25000);\
 \
@@ -141,8 +141,9 @@ CREATE TABLE event (\
  EXECUTE PROCEDURE update_modified_on();\
  COMMIT;\
 \
-insert into event (occasion_id, name, location, date, time) values (1, 'Reception', 'Palace Grouds', 'June 15th 2014', '8 PM');\
-insert into event (occasion_id, name, location, date, time) values (1, 'Marriage', 'Suryodaya', 'June 15th 2014', '8 AM');\
+insert into event (occasion_id, name, location,date, time) values\
+(1, 'Dinner & Dancing', 'Temple Tree Leisure - No 128/8, Outer ring road, Behind Intel Campus Varthur Hobli, Panathur Post Bellandur, Bangalore Karnataka 560103',\
+'June 15th 2014', '7.30 PM');\
 \
 CREATE TABLE contact_person (\
  id SERIAL NOT NULL,\
@@ -151,7 +152,7 @@ CREATE TABLE contact_person (\
  phone_number character varying NOT NULL,\
  email character varying NOT NULL,\
  address character varying NOT NULL,\
- image_url character varying NOT NULL,\
+ image_url character varying,\
  primary_contact boolean not null default false,\
  created_on timestamp without time zone NOT NULL DEFAULT now(),\
  modified_on timestamp without time zone NOT NULL DEFAULT now(),\
@@ -172,7 +173,15 @@ CREATE TABLE contact_person (\
  EXECUTE PROCEDURE update_modified_on();\
  COMMIT;\
 \
-insert into contact_person (occasion_id, name, phone_number, email, address, image_url) values (1, 'Akhil Iyer', '+91 98861 133941', 'akhil.iy@gmail.com', '2640 18th Main 3rd Cross HAL 2nd Stage Bangalore 08', 'akhil.jpg');\
+insert into contact_person (occasion_id, name, phone_number, email, address, primary_contact) values (1, 'Akhil Iyer', '+91 98861 33941', 'akhil.iy@gmail.com', 'Indiranagar, Bangalore / Santacruz (w), Mumbai', true);\
+insert into contact_person (occasion_id, name, phone_number, email, address, image_url) values (1, 'Ajay Perumal', '+1 646 509 8749', 'ajayperumal07@gmail.com', 'New York', null);\
+insert into contact_person (occasion_id, name, phone_number, email, address, image_url) values (1, 'Varsha Kumar', '+91 95919 04609', 'varshakumar.07@gmail.com', 'Jayamahal (Nandidurga Road) , Bangalore', null);\
+insert into contact_person (occasion_id, name, phone_number, email, address, image_url) values (1, 'Pranav Sitaraman', '+91 98804 30024', 'pranav.sitaraman@gmail.com', 'Hebbal, Bangalore', null);\
+insert into contact_person (occasion_id, name, phone_number, email, address, image_url) values (1, 'Sabina Susan Samuel', '+91 96326 04859', 'Sabz.susansamuel87@gmail.com', 'Jai Bharath Nager (near Banaswadi Railway Station), Bangalore', null);\
+insert into contact_person (occasion_id, name, phone_number, email, address, image_url) values (1, 'Saurav Jha', '+91 90007 88376', 'sauravjha.1985@gmail.com', 'Santa Cruz, Bombay', null);\
+insert into contact_person (occasion_id, name, phone_number, email, address, image_url) values (1, 'Madhuswetha', '+1 815 277 6781', 'Madhuswetha@facebook.com', 'Dallas, TX', null);\
+insert into contact_person (occasion_id, name, phone_number, email, address, image_url) values (1, 'Faris Sahem', '+91 98869 16720', 'faris.sahem@gmail.com', 'Jayanagar, Bangalore', null);\
+\
 \
 CREATE TABLE involved_person (\
  id SERIAL NOT NULL,\
